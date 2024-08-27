@@ -25,7 +25,7 @@ const Register = ({showLoginHandler}) => {
         setusername("");
         setemail("");
         setpassword("");
-        alert("Vendor resistered successfully")
+        alert("Vendor registered successfully")
         showLoginHandler()
       }
     } catch (error) {

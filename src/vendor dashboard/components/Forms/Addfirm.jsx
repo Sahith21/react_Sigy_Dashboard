@@ -37,8 +37,8 @@ const Addfirm = () => {
   const handlefirmsubmit = async (e) => {
     e.preventDefault();
     try {
-      const loginToken = localStorage.getItem('loginToken');
-      if(!loginToken){
+      const logintoken = localStorage.getItem('loginToken');
+      if(!logintoken){
         console.error("user not authenticated");
       }
 
@@ -59,7 +59,7 @@ const Addfirm = () => {
     const response = await fetch(`${API_URL}/firm/add-firm`,{
       method:'POST',
       headers:{
-        'token':`${loginToken}`
+        'token':`${logintoken}`
       },
       body: formdata
     });
@@ -79,8 +79,8 @@ const Addfirm = () => {
     else{
       alert('Failed to add firm')
     }
-    const firmId = data.firmId;
-    localStorage.setItem('firmId',firmId)
+    const firmid = data.firmId;
+    localStorage.setItem('firmId',firmid)
     } catch (error) {
       console.error("Failed to add firm",error)
     }
