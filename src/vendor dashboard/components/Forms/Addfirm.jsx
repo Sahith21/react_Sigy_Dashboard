@@ -80,7 +80,10 @@ const Addfirm = () => {
       alert('Failed to add firm')
     }
     const firmid = data.firmId;
+    const firmname = data.vendorfirmname;
     localStorage.setItem('firmId',firmid)
+    localStorage.setItem('firmname',firmname)
+    window.location.reload()
     } catch (error) {
       console.error("Failed to add firm",error)
     }
