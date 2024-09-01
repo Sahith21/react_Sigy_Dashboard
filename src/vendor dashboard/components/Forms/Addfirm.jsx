@@ -85,7 +85,7 @@ const Addfirm = () => {
     //localStorage.setItem('firmname',firmname)
     window.location.reload()
     } catch (error) {
-      console.error("Failed to add firm",error)
+      console.error("Failed to add firm")
     }
   }
 
