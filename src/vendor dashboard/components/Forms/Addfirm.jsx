@@ -55,11 +55,11 @@ const Addfirm = () => {
             formdata.append('region',value)
           });
 
-          const response = await fetch(${API_URL}/firm/add-firm,{
+          const response = await fetch(`${API_URL}/firm/add-firm`,{
             method:'POST',
             headers:{
-              'token':${logintoken}
-            }
+              'token':(`${logintoken}`)
+            },
             body: formdata
           });
           const data = await response.json()
