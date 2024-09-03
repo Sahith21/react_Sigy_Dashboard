@@ -37,56 +37,53 @@ const Addfirm = () => {
   const handlefirmsubmit = async (e) => {
     e.preventDefault();
     try {
-      const logintoken = localStorage.getItem('loginToken');
-      if (!logintoken) {
-        console.error("User not authenticated");
-        return; // Stop further execution if the user is not authenticated
-      }
-  
-      const formdata = new FormData();
-      formdata.append('firmname', firmname);
-      formdata.append('area', area);
-      formdata.append('offer', offer);
-      formdata.append('image', file);
-  
-      category.forEach((value) => {
-        formdata.append('category', value)
-      });
-  
-      region.forEach((value) => {
-        formdata.append('region', value)
-      });
-  
-      const response = await fetch(`${API_URL}/firm/add-firm`, {
-        method: 'POST',
-        headers: {
-          'token': `${logintoken}`
-        },
-        body: formdata
-      });
-      const data = await response.json();
-      if (response.ok) {
-        console.log(data);
-        alert("Firm added successfully");
-        setfirmname("");
-        setarea("");
-        setcategory([]);
-        setregion([]);
-        setoffer("");
-        setfile(null);
-  
-        if (data.firmId) {
-          localStorage.setItem('firmId', data.firmId);
-        }
-  
-      } else if (data.message === "vendor can have only one firm") {
-        alert('Firm exists. Only 1 firm can be added');
-      } else {
-        alert('Failed to add firm');
-      }
-    } catch (error) {
-      console.error("Failed to add firm", error);
-      alert('An error occurred while adding the firm. Please try again later.');
+            const logintoken = localStorage.getItem('loginToken');
+            if(!logintoken){
+              console.error("user not authenticated");
+            }
+            const formdata = new FormData();
+            formdata.append('firmname',firmname);
+            formdata.append('area',area);
+            formdata.append('offer',offer);
+            formdata.append('image',file);
+
+            category.forEach((value)=>{
+              formdata.append('category',value)
+          });
+
+          region.forEach((value)=>{
+            formdata.append('region',value)
+          });
+
+          const response = await fetch(${API_URL}/firm/add-firm,{
+            method:'POST',
+            headers:{
+              'token':${logintoken}
+            }
+            body: formdata
+          });
+          const data = await response.json()
+          if(response.ok){
+            console.log(data);
+            alert("Firm added successfully");
+            setfirmname("");
+            setarea("");
+            setcategory([]);
+            setregion([]);
+            setoffer("");
+            setfile(null);
+          }else if(data.message==="vendor can have only one firm"){
+            alert('Firm exists.Only 1 firm can be added');
+          }
+          else{
+            alert('Failed to add firm')
+          }
+          const firmid = data.firmId;
+          localStorage.setItem('firmId',firmid)
+          window.location.reload()
+    } 
+    catch (error) {
+      console.error("Failed to add firm")
     }
   }
   
