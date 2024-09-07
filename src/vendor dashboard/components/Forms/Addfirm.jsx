@@ -58,7 +58,7 @@ const Addfirm = () => {
           const response = await fetch(`${API_URL}/firm/add-firm`,{
             method:'POST',
             headers:{
-              'token':(`${logintoken}`)
+              'token':`${logintoken}`
             },
             body: formdata
           });
@@ -84,6 +84,7 @@ const Addfirm = () => {
     } 
     catch (error) {
       console.error("Failed to add firm")
+      alert("failed to add firm")
     }
   }
   
